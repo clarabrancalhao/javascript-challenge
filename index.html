@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css" />
     <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
   </head>
   <body>
@@ -23,7 +23,9 @@
       </div>
       <div class="header2">
         <h3 class="account-button">Account</h3>
-        <h3>Log out</h3>
+        <h3 class="logout">
+          Log out <i class="material-icons-outlined">arrow_forward</i>
+        </h3>
       </div>
     </header>
     <div class="content">
@@ -41,17 +43,26 @@
         </div>
         <div class="description-container"></div>
         <div class="numbers-section"></div>
-        <div>
-          <button>Complete Game</button>
-          <button class="clear-game">Clear Game</button>
-          <button class="add-to-cart">Add to Cart</button>
+        <div class="game-config-add-to-cart-button">
+          <div class="game-config-button">
+            <button class="complete-game">Complete Game</button>
+            <button class="clear-game">Clear Game</button>
+          </div>
+          <button class="add-to-cart">
+            <i class="material-icons-outlined">shopping_cart</i>
+            Add to cart
+          </button>
         </div>
       </div>
       <div class="cart-container">
         <div class="cart-content"></div>
-
+        <div class="final-value-container">
+          <h2>CART</h2>
+          <h2 class="total">TOTAL:R$00,00</h2>
+        </div>
         <button class="save-button">
           <h2>Save</h2>
+          <i class="material-icons-outlined">arrow_forward</i>
         </button>
       </div>
     </div>

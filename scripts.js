@@ -20,12 +20,14 @@
   const clearGameButton = document.querySelector('.clear-game');
   const addToCartButton = document.querySelector('.add-to-cart');
   const cartContent = document.querySelector('.cart-content');
+  const completeGame = document.querySelector('.complete-game');
 
   selectGameButtons.forEach((button) => {
     button.addEventListener('click', selectedGame);
   });
   clearGameButton.addEventListener('click', clearGame);
   addToCartButton.addEventListener('click', addToCart);
+  completeGame.addEventListener('click', getRandomNumbers);
 
   function loadGameContent() {
     let activetedButton = selectGameButtons.find((element) => {
@@ -124,28 +126,30 @@
       body: JSON.stringify({
         game: selectedGame,
         numbers: selectedNumbers,
-        value: selectedGameData['price'],
+        price: selectedGameData['price'],
       }),
-    });
-    loadCartContent(selectedNumbers, selectedGame);
-    return;
-
-    // window.alert('Você não selecionou números suficiente.');
+    })
+      .then(loadCartContent())
+      .then(clearGame());
   }
 
-  function loadCartContent() {
-    console.log(cartData);
-    let cartGames = cartData
+  async function loadCartContent() {
+    const cartData = await getCartData('http://localhost:3000/games');
+    const cartGamesCompleted = cartData
       .map((element) => {
-        return `<div class="game-card"><i class="material-icons" id=${
+        return `<div class="game-card"><i class="material-icons-outlined" id=${
           element.id
-        }>delete</i><div class="cart-divisor"></div><div class="game-infos"><h4>${element[
-          'numbers'
-        ].join(', ')}</h4><h4>${element['game']}</h4></div></div>`;
+        }>delete</i><div class="cart-divisor" game=${
+          element['game']
+        }></div><div class="game-infos"><h4>${element['numbers'].join(
+          ', '
+        )}</h4><div><h4 game=${element['game']}>${element['game']}</h4><h4>R$${
+          element['price']
+        }</h4></div></div></div>`;
       })
       .join('');
 
-    cartContent.innerHTML = `<h2>CART</h2> ${cartGames}`;
+    cartContent.innerHTML = `<h2>CART</h2> ${cartGamesCompleted}`;
 
     const deleteGameButton = [...document.querySelectorAll('i')];
 
@@ -154,7 +158,45 @@
     });
   }
 
-  function deleteGame() {}
+  async function deleteGame(event) {
+    const deleted = await fetch(
+      `http://localhost:3000/games/${event.target.id}`,
+      {
+        method: 'DELETE',
+      }
+    ).then(loadCartContent());
+  }
+
+  function getRandomNumbers() {
+    const numberCells = [...document.querySelectorAll('.numbers-cell')];
+    let selectedGame = selectGameButtons.find((game) => {
+      return game.hasAttribute('active');
+    }).id;
+    const selectedGameData = gamesData['types'].find((game) => {
+      return game['type'] === selectedGame;
+    });
+
+    let randomNumbers = [];
+
+    for (let i = 1; i < selectedGameData['max-number']; i) {
+      const random =
+        Math.floor(Math.random() * (selectedGameData['range'] - 1)) + 1;
+      randomNumbers.push(random);
+      randomNumbers = [...new Set(randomNumbers)];
+      i = randomNumbers.length;
+    }
+
+    const activedButtons = numberCells.filter((element) => {
+      return randomNumbers.includes(Number(element.id));
+    });
+
+    numberCells.forEach((button) => {
+      button.removeAttribute('selected');
+    });
+    activedButtons.forEach((button) => {
+      button.setAttribute('selected', 'true');
+    });
+  }
 
   loadCartContent();
   loadGameContent();

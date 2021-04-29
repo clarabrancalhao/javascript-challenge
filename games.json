@@ -29,10 +29,10 @@
     },
     {
       "type": "Lotomania",
-      "description": "Escolha 5 números dos 80 disponíveis na quina. 5, 4, 3 ou 2 acertos. São seis sorteios semanais e seis chances de ganhar.",
-      "range": 80,
-      "price": 2,
-      "max-number": 5,
+      "description": "Escolha 50 números dos 100 disponíveis na quina. 20, 19, 18, 17, 16 ou 15 acertos. São seis sorteios semanais e seis chances de ganhar.",
+      "range": 100,
+      "price": 2.5,
+      "max-number": 50,
       "color": "#F79C31",
       "min-cart-value": 30
     }

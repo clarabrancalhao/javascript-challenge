@@ -20,4 +20,11 @@ app.post('/games', function (req, res) {
   return res.json(games);
 });
 
+app.delete('/games/:deletedID', function (req, res) {
+  const { deletedID } = req.params;
+  const gameIndex = games.findIndex((game) => game.id === deletedID);
+  games.splice(gameIndex, 1);
+  return res.status(204);
+});
+
 app.listen(port);
