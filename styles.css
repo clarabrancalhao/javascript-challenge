@@ -140,11 +140,40 @@ header {
   margin: 10px 6px;
 }
 
+.numbers-cell[selected='true'] {
+  background: #27c383;
+}
+
 .cart-container {
   margin-left: 41px;
   background-color: #ffffff;
   border: 1px solid #e2e2e2;
   border-radius: 10px;
+  width: 317px;
+}
+
+.cart-content {
+  margin: 32px 16px;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 32px;
+}
+
+.cart-divisor {
+  width: 4px;
+  height: 86px;
+  background: darkblue;
+  border-radius: 100px;
+  margin-left: 14px;
+}
+
+i {
+  cursor: pointer;
 }
 
 .price-container {
@@ -158,4 +187,19 @@ header {
 
 .save-button {
   width: 100%;
+  color: #27c383;
+  font-size: 35px;
+}
+.save-button h2 {
+  color: #27c383;
+}
+
+footer {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ebebeb;
+  margin-top: 160px;
 }
