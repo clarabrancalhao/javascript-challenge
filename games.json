@@ -6,14 +6,16 @@
       "range": 25,
       "price": 2.5,
       "max-number": 15,
+      "min-number": 15,
       "color": "#7F3992"
     },
     {
       "type": "Mega-Sena",
-      "description": "Mark 6 of 60 numbers available. Win by hitting 6, 5 or 4",
+      "description": "Mark 6 of 60 numbers available. Win by hitting 6, 5 or 4. There are to weekly draws for you to bet and cheer to become millionarie",
       "range": 60,
       "price": 4.5,
       "max-number": 6,
+      "min-number": 6,
       "color": "#01AC66"
     },
     {
@@ -22,6 +24,7 @@
       "range": 80,
       "price": 2.0,
       "max-number": 5,
+      "min-number": 5,
       "color": "#F79C31"
     },
     {
@@ -30,6 +33,7 @@
       "range": 100,
       "price": 2.5,
       "max-number": 50,
+      "min-number": 15,
       "color": "#F79C31"
     }
   ],

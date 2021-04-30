@@ -8,6 +8,8 @@
 
 body {
   background-color: #f7f7f7;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 header {
@@ -21,8 +23,7 @@ header {
   border: 2px solid #ebebeb;
   font-weight: bold;
   font-size: 20px;
-  padding-left: 130px;
-  padding-right: 200px;
+  padding: 0 200px 0 130px;
 }
 
 .header1,
@@ -41,7 +42,7 @@ header {
 }
 
 .title {
-  padding-right: 74px;
+  margin-right: 74px;
   font-size: 44px;
 }
 
@@ -210,6 +211,11 @@ header {
   margin-bottom: 32px;
 }
 
+.delete-button {
+  background: transparent;
+  border: none;
+}
+
 .cart-divisor {
   min-width: 4px;
   height: 100px;
@@ -287,7 +293,7 @@ button {
 .total {
   font-weight: 300;
   font-style: normal;
-  padding-left: 6px;
+  margin-left: 6px;
 }
 
 .save-button {
@@ -297,7 +303,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f4f4 0% 0% no-repeat padding-box;
+  background: #f4f4f4;
   border: 1px solid #e2e2e2;
   padding: 28px 0;
 }
