@@ -11,13 +11,18 @@ body {
 }
 
 header {
-  width: 100%;
+  position: sticky;
+  top: 0;
+  background: #f7f7f7;
+  max-width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border: 2px solid #ebebeb;
   font-weight: bold;
   font-size: 20px;
+  padding-left: 130px;
+  padding-right: 200px;
 }
 
 .header1,
@@ -51,8 +56,16 @@ header {
   margin-right: 40px;
 }
 
+.content {
+  margin-left: 130px;
+  margin-top: 42px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .game-container {
-  max-width: 700px;
+  max-width: 650px;
+  margin-top: 32px;
 }
 
 .game-name-container {
@@ -70,8 +83,7 @@ header {
 }
 
 .select-game-buttons-container {
-  margin-top: 20px;
-  margin-bottom: 28px;
+  margin: 20px 0 28px;
 }
 
 .select-game {
@@ -122,16 +134,10 @@ header {
   margin-top: 4px;
 }
 
-.content {
-  padding-left: 130px;
-  padding-top: 73px;
-  display: flex;
-}
-
 .numbers-cell {
   background: #adc0c4;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: none;
   font-weight: bold;
@@ -179,20 +185,17 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 41px;
+  margin-right: 200px;
   background-color: #ffffff;
   border: 1px solid #e2e2e2;
   border-radius: 10px;
   width: 317px;
-  min-height: 400px;
-}
-
-.cart-container h2 {
-  margin-left: 18px;
+  height: min-content;
 }
 
 .cart-content {
-  margin: 32px 16px;
+  margin: 32px 16px 0 16px;
+  height: auto;
 }
 
 .cart-content h2 {
@@ -208,14 +211,15 @@ header {
 }
 
 .cart-divisor {
-  width: 4px;
-  height: 86px;
-  border-radius: 100px;
+  min-width: 4px;
+  height: 100px;
+  border-radius: 100px 0 0 100px;
   margin-left: 14px;
 }
 
 .cart-divisor[game='Lotomania'] {
   background: #f79c31;
+  height: 150px;
 }
 
 .cart-divisor[game='Lotofácil'] {
@@ -223,7 +227,19 @@ header {
 }
 
 .cart-divisor[game='Mega-Sena'] {
+  height: 60px;
   background: #01ac66;
+}
+
+.game-price {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+h4[game] {
+  margin-right: 14px;
+  font-size: 16px;
 }
 
 h4[game='Lotomania'] {
@@ -242,6 +258,18 @@ h4[game='Mega-Sena'] {
   margin-left: 12px;
 }
 
+.cart-numbers {
+  font-size: 15px;
+  color: #868686;
+  letter-spacing: 0px;
+}
+
+.game-name-price {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+}
+
 i {
   cursor: pointer;
 }
@@ -252,12 +280,14 @@ button {
 
 .final-value-container {
   display: flex;
+  margin-left: 18px;
+  margin-bottom: 47px;
 }
 
 .total {
   font-weight: 300;
   font-style: normal;
-  padding-left: 4px;
+  padding-left: 6px;
 }
 
 .save-button {
@@ -274,6 +304,13 @@ button {
 
 .save-button h2 {
   color: #27c383;
+  font-size: 35px;
+}
+
+.save-button i {
+  color: #27c383;
+  margin-left: 18px;
+  font-size: 24px;
 }
 
 footer {
