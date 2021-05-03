@@ -12,6 +12,7 @@
   const description = document.querySelector('.description-container');
   const gameName = document.querySelector('.game-name-container');
   let selectGameButtons = [];
+  let deleteButtons;
   const selectGameButtonsContainer = document.querySelector(
     '.select-game-container'
   );
@@ -47,7 +48,7 @@
     selectGameButtonsContainer.innerHTML = [...gamesData['types']]
       .map((game, index) => {
         return index === 0
-          ? `<button class="select-game" active="true" id=${game['type']} style="color: ${game['color']}; border: 2px solid ${game['color']}">${game['type']}</button>`
+          ? `<button class="select-game" active="true" id=${game['type']} style="color: #FFFFFF; background:${game['color']}; border: 2px solid ${game['color']}">${game['type']}</button>`
           : `<button class="select-game" id=${game['type']} style="color: ${game['color']}; border: 2px solid ${game['color']}">${game['type']}</button>`;
       })
       .join('');
@@ -110,9 +111,8 @@
   function clearGame() {
     const numberButtons = getElements('.numbers-cell');
 
-    console.log(numberButtons[0]);
-
     numberButtons.forEach((button) => {
+      button.style.background = '#adc0c4';
       button.removeAttribute('selected');
     });
   }
@@ -127,7 +127,6 @@
   }
 
   async function addToCart() {
-    const selectedGameData = getSelectedGame();
     const selectedNumbers = getElements('[selected]').map((button) => {
       return button.id;
     });
@@ -151,7 +150,7 @@
         color: selectedGame['color'],
       }),
     });
-    await loadCartContent();
+    loadCartContent();
     clearGame();
   }
 
@@ -169,9 +168,9 @@
     [...cartData].length
       ? (cartGamesCompleted = cartData
           .map((element) => {
-            return `<div class="game-card"><i class="material-icons-outlined delete-button" id=${
+            return `<div class="game-card"><button class="delete-button" id=${
               element.id
-            }>delete</i><div class="cart-divisor" style="background: ${
+            }><i class="material-icons-outlined">delete</i></button><div class="cart-divisor" style="background: ${
               element['color']
             }" game=${
               element['game']
@@ -190,7 +189,9 @@
 
     cartContent.innerHTML = `<h2>CART</h2> ${cartGamesCompleted}`;
 
-    await addEventListenerToButtons();
+    addEventListenerToDeleteButtons();
+
+    console.log('já adicionou os event');
 
     const finalValue = await getFinalValue();
 
@@ -199,18 +200,20 @@
     finalValue
       ? (finalValueElement.innerHTML = `<h2>CART</h2>
     <h2 class="total">TOTAL: ${formatValue(finalValue)}</h2>`)
-      : (finalValueElement.innerHTML = null);
+      : (finalValueElement.innerHTML = `<h2>CART</h2>
+      <h2 class="total">TOTAL: Empty cart.`);
   }
 
-  function addEventListenerToButtons() {
-    console.log('well');
-    const deleteGameFromCartButton = getElements('.delete-button');
+  function addEventListenerToDeleteButtons() {
+    deleteButtons = getElements('.delete-button');
 
-    console.log(deleteGameFromCartButton);
-
-    deleteGameFromCartButton.forEach((button) => {
+    deleteButtons.forEach((button) => {
       button.addEventListener('click', deleteGame);
     });
+  }
+
+  function teste() {
+    console.log('ativou teste');
   }
 
   async function getFinalValue() {
@@ -228,12 +231,10 @@
   }
 
   async function deleteGame(event) {
-    console.log(event.target);
-    await fetch(`http://localhost:3000/games/${event.target.id}`, {
+    await fetch(`http://localhost:3000/games/${event.currentTarget.id}`, {
       method: 'DELETE',
     }).then((response) => response.json);
     await loadCartContent();
-    console.log('funcionou');
   }
 
   function getRandomNumbers() {

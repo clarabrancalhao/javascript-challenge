@@ -17,7 +17,7 @@ app.post('/games', function (req, res) {
   const game = req.body;
   const newGame = { ...game, id: uuid() };
   games.push(newGame);
-  return res.status(201).json(newGame);
+  return res.sendStatus(201).json(newGame);
 });
 
 app.delete('/games/:deletedID', function (req, res) {
