@@ -24,7 +24,7 @@ app.delete('/games/:deletedID', function (req, res) {
   const { deletedID } = req.params;
   const gameIndex = games.findIndex((game) => game.id === deletedID);
   games.splice(gameIndex, 1);
-  return res.status(204);
+  return res.sendStatus(204);
 });
 
 app.listen(port);

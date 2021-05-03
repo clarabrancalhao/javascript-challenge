@@ -83,7 +83,7 @@ header {
   margin-top: 44px;
 }
 
-.select-game-buttons-container {
+.select-game-container {
   margin: 20px 0 28px;
 }
 
@@ -95,39 +95,6 @@ header {
   font-weight: bold;
   margin-right: 20px;
   font-size: 14px;
-}
-
-.megasena {
-  border: 2px solid #01ac66;
-  color: #01ac66;
-}
-
-.megasena[active='true'] {
-  background: #01ac66;
-  border: 2px solid #01ac66;
-  color: #ffffff;
-}
-
-.lotomania {
-  border: 2px solid #f79c31;
-  color: #f79c31;
-}
-
-.lotomania[active='true'] {
-  background: #f79c31;
-  border: 2px solid #f79c31;
-  color: #ffffff;
-}
-
-.lotofacil {
-  border: 2px solid #7f3992;
-  color: #7f3992;
-}
-
-.lotofacil[active='true'] {
-  background: #7f3992;
-  border: 2px solid #7f3992;
-  color: #ffffff;
 }
 
 .game-description {
@@ -223,20 +190,6 @@ header {
   margin-left: 14px;
 }
 
-.cart-divisor[game='Lotomania'] {
-  background: #f79c31;
-  height: 150px;
-}
-
-.cart-divisor[game='Lotofácil'] {
-  background: #7f3992;
-}
-
-.cart-divisor[game='Mega-Sena'] {
-  height: 60px;
-  background: #01ac66;
-}
-
 .game-price {
   font-style: normal;
   font-weight: 400;
@@ -246,18 +199,6 @@ header {
 h4[game] {
   margin-right: 14px;
   font-size: 16px;
-}
-
-h4[game='Lotomania'] {
-  color: #f79c31;
-}
-
-h4[game='Lotofácil'] {
-  color: #7f3992;
-}
-
-h4[game='Mega-Sena'] {
-  color: #01ac66;
 }
 
 .game-infos {
