@@ -9,10 +9,10 @@
   let selectedGame = [];
 
   //Elements
-  const description = document.querySelector('.description-container');
-  const gameName = document.querySelector('.game-name-container');
   let selectGameButtons = [];
   let deleteButtons;
+  const description = document.querySelector('.description-container');
+  const gameName = document.querySelector('.game-name-container');
   const selectGameButtonsContainer = document.querySelector(
     '.select-game-container'
   );
@@ -22,6 +22,7 @@
   const cartContent = document.querySelector('.cart-content');
   const completeGame = document.querySelector('.complete-game');
   const saveButton = document.querySelector('.save-button');
+  const finalValueElement = document.querySelector('.final-value-container');
 
   //Event Listeners
   clearGameButton.addEventListener('click', clearGame);
@@ -33,17 +34,6 @@
   });
 
   //Functions
-  function loadGameContent() {
-    gameName.innerHTML = `<h2>NEW BET</h2>
-    <h2 class="game-name">FOR ${selectedGame['type'].toUpperCase()}</h2>`;
-    description.innerHTML = `<h4>Fill your bet</h4>
-    <h4 class="game-description">${selectedGame['description']}</h4>`;
-
-    const range = selectedGame['range'];
-
-    displayNumbers(range);
-  }
-
   function loadSelectButtons() {
     selectGameButtonsContainer.innerHTML = [...gamesData['types']]
       .map((game, index) => {
@@ -59,6 +49,17 @@
     });
 
     getSelectedGame();
+  }
+
+  function loadGameContent() {
+    gameName.innerHTML = `<h2>NEW BET</h2>
+    <h2 class="game-name">FOR ${selectedGame['type'].toUpperCase()}</h2>`;
+    description.innerHTML = `<h4>Fill your bet</h4>
+    <h4 class="game-description">${selectedGame['description']}</h4>`;
+
+    const range = selectedGame['range'];
+
+    displayNumbers(range);
   }
 
   function selectGame(event) {
@@ -109,7 +110,7 @@
   }
 
   function clearGame() {
-    const numberButtons = getElements('.numbers-cell');
+    const numberButtons = getElements('[selected]');
 
     numberButtons.forEach((button) => {
       button.style.background = '#adc0c4';
@@ -191,11 +192,7 @@
 
     addEventListenerToDeleteButtons();
 
-    console.log('já adicionou os event');
-
     const finalValue = await getFinalValue();
-
-    const finalValueElement = document.querySelector('.final-value-container');
 
     finalValue
       ? (finalValueElement.innerHTML = `<h2>CART</h2>
@@ -210,10 +207,6 @@
     deleteButtons.forEach((button) => {
       button.addEventListener('click', deleteGame);
     });
-  }
-
-  function teste() {
-    console.log('ativou teste');
   }
 
   async function getFinalValue() {
@@ -233,7 +226,7 @@
   async function deleteGame(event) {
     await fetch(`http://localhost:3000/games/${event.currentTarget.id}`, {
       method: 'DELETE',
-    }).then((response) => response.json);
+    });
     await loadCartContent();
   }
 
