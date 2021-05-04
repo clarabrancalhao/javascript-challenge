@@ -188,7 +188,9 @@
           .join(''))
       : (cartGamesCompleted = '');
 
-    cartContent.innerHTML = `<h2>CART</h2> ${cartGamesCompleted}`;
+    cartGamesCompleted === ''
+      ? (cartContent.innerHTML = '<h2>CART EMPTY</h2>')
+      : (cartContent.innerHTML = `<h2>CART</h2> ${cartGamesCompleted}`);
 
     addEventListenerToDeleteButtons();
 
@@ -198,7 +200,7 @@
       ? (finalValueElement.innerHTML = `<h2>CART</h2>
     <h2 class="total">TOTAL: ${formatValue(finalValue)}</h2>`)
       : (finalValueElement.innerHTML = `<h2>CART</h2>
-      <h2 class="total">TOTAL: Empty cart.`);
+      <h2 class="total">TOTAL: R$ 00,00`);
   }
 
   function addEventListenerToDeleteButtons() {
@@ -232,8 +234,15 @@
 
   function getRandomNumbers() {
     const numberCells = getElements('.numbers-cell');
+    const selectedNumbers = getElements('[selected]');
 
-    let randomNumbers = [];
+    if (selectedNumbers.length == selectedGame['max-number']) {
+      return window.alert('Your game is already completed.');
+    }
+
+    let randomNumbers = selectedNumbers.map((element) => {
+      return Number(element.id);
+    });
 
     for (let i = 1; i < selectedGame['max-number']; i) {
       const random =
@@ -246,8 +255,6 @@
     const activedButtons = numberCells.filter((element) => {
       return randomNumbers.includes(Number(element.id));
     });
-
-    clearGame();
 
     activedButtons.forEach((button) => {
       button.style.background = selectedGame['color'];

@@ -163,7 +163,19 @@ header {
 
 .cart-content {
   margin: 32px 16px 0 16px;
-  height: auto;
+  height: 320px;
+  overflow: auto;
+  scrollbar-base-color: #27c383;
+}
+
+.cart-content::-webkit-scrollbar {
+  background-color: #fbfbfb;
+  width: 12px;
+}
+
+.cart-content::-webkit-scrollbar-thumb {
+  background-color: #27c383;
+  border-left: 4px solid #faf6ed;
 }
 
 .cart-content h2 {
